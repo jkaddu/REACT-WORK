@@ -27,22 +27,26 @@ togglePersonsHandler = () => {
       cursor: 'pointer'
     }
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <UserInput 
+          changed={this.inputChangeHandler}
+          currentName={this.state.username} />
+          <UserOutput username={this.state.username} />
+          <UserOutput username={this.state.username} />
+          <UserOutput username= 'Joshua' />
+        </div>
+      );
+    }
     return (
       <div className="App">
         <header className="App-header">
           <h1>React Ways</h1>
           <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
-         {
-           this.state.showPersons === true ?
-            <div>
-            <UserInput 
-            changed={this.inputChangeHandler}
-            currentName={this.state.username} />
-            <UserOutput username={this.state.username} />
-            <UserOutput username={this.state.username} />
-            <UserOutput username= 'Joshua' />
-            </div> : null
-          }
+         {persons}
         </header>
       </div>
     );
