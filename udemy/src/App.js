@@ -5,7 +5,12 @@ import UserOutput from './components/UserOutput';
 
 class App extends Component {
   state = {
-    username: 'superman',
+    usernames: [
+      { name: 'superman' },
+      { name: 'spiderman' },
+      { name: 'blackpanther' }
+
+    ],
     showPersons: false
   }
 
@@ -32,6 +37,9 @@ togglePersonsHandler = () => {
     if (this.state.showPersons) {
       persons = (
         <div>
+          {this.state.usernames.map(username => {
+            return <UserOutput name={username} />
+          })}
           <UserInput 
           changed={this.inputChangeHandler}
           currentName={this.state.username} />
