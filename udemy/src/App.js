@@ -37,9 +37,11 @@ togglePersonsHandler = () => {
     if (this.state.showPersons) {
       persons = (
         <div>
+          {/* creating a new array and outputting a list*/}
           {this.state.usernames.map(username => {
             return <UserOutput name={username} />
           })}
+          {/* Dont know if the inputs above will be dynamic without the this.state.username */}
           <UserInput 
           changed={this.inputChangeHandler}
           currentName={this.state.username} />
