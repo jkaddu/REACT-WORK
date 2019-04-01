@@ -1,24 +1,48 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import UserInput from './components/UserInput'
+import UserOutput from './components/UserOutput';
 
 class App extends Component {
+  state = {
+    username: 'superman',
+    showPersons: false
+  }
+
+inputChangeHandler = (event) => {
+  this.setState({username: event.target.value})
+}
+
+togglePersonsHandler = () => {
+  const doesShow = this.state.showPersons;
+  this.setState({showPersons: !doesShow})
+}
+
   render() {
+    const style = {
+      background: 'white',
+      font: 'inherit',
+      border: '1px solid black',
+      padding: '5px',
+      cursor: 'pointer'
+    }
+
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <h1>React Ways</h1>
+          <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+         {
+           this.state.showPersons === true ?
+            <div>
+            <UserInput 
+            changed={this.inputChangeHandler}
+            currentName={this.state.username} />
+            <UserOutput username={this.state.username} />
+            <UserOutput username={this.state.username} />
+            <UserOutput username= 'Joshua' />
+            </div> : null
+          }
         </header>
       </div>
     );
